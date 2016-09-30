@@ -44,6 +44,12 @@ class JFormFieldCategory extends JFormFieldList
 		$published = (string) $this->element['published'];
 		$language  = (string) $this->element['language'];
 
+		// Try to get extension from the field 'fields_name.field_name' if $extension match 'field:fields_name.field_name'
+		if (strpos($extension, 'field:') === 0)
+		{
+			$extension = $this->form->getValue(substr($extension, 6));
+		}
+
 		// Load the category options for a given extension.
 		if (!empty($extension))
 		{
